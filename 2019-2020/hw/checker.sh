@@ -1,4 +1,4 @@
 unzip -qq archive.zip
 unzip -qq -o artifact.zip
-./run.sh
+make run_test
 exit $?
