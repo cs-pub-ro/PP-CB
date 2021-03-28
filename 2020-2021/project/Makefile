@@ -8,6 +8,7 @@ run_test:
 	rm -rf *.hi *.o
 	rm -rf table/*.hi table/*.o
 	rm -rf tests/main
+	
 clean:
 	rm -rf *.hi *.o
 	rm -rf table/*.hi table/*.o
