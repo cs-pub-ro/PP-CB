@@ -73,7 +73,7 @@ def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
         print("-"*19)
         final_score += (obtained_score * stages_values[test_stage]) / 100
 
-    print(f"Final grade: {int(final_score)}/40" + "\n")
+    print(f"TOTAL: {int(final_score)}/40" + "\n")
     if final_score == 40:
         print("\t\t\t\tCongrats! You chad!")
         print("""\
