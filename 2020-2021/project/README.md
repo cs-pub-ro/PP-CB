@@ -6,7 +6,7 @@ Write your code in tasks.hs. You can add other modules aswell, but the checker s
 make run_test
 
 ### Check the output of one task
+Load main.hs into ghci.
 <code>
-ghci main.hs
-> run_test taskset_number task_number [subtask_number]
+run_test taskset_number task_number [subtask_number]
 </code>
