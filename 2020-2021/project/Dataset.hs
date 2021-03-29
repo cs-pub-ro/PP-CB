@@ -6,7 +6,7 @@
     - 4 Strings in CSV-format: hw_grades_csv, exam_grades_csv, lecture_grades_csv, email_map_csv.
 
     DO NOT MODIFY THIS FILE! If you suspect that anything is wrong (e.g. hw_grades and
-    hw_grades_csv don't have the same entries), post on FORUM!
+    hw_grades_csv don't have the same entries), post on FORUM!!
 -}
 
 module Dataset where
