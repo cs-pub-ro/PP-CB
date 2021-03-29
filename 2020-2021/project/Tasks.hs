@@ -10,9 +10,9 @@ module Tasks where
 import Dataset
 
 type CSV = String
-type Column = String
-type Entry = [Column]
-type Table = [Entry]
+type Value = String
+type Row = [Value]
+type Table = [Row]
 
 {-
 	TASK SET 1
