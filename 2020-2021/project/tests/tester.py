@@ -23,14 +23,14 @@ stages_values = {
 
 def test() -> dict:
     results = defaultdict(bool)
-    binary_file = "./tests/main" 
+    binary_file = "./tests/Main" 
     if not os.path.exists(binary_file):
         print("Compiled binary not found! Please run: make run_test and be sure there were no errors!")
         return results
 
     ref_files_path = "./tests/ref"
     output_files_path = "./tests/output"
-    binary_file = "./tests/main"
+    binary_file = "./tests/Main"
 
     for _, _, files in os.walk(ref_files_path):
         for f in files:
@@ -56,7 +56,6 @@ def test() -> dict:
 
 def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
     test_results = list(results.items())
-    print(results)
     test_results.sort(key=lambda x: (int(x[0].split("_")[0][1:]), int(x[0].split("_")[1][1:])))
     print("="*19)
     print("PP Project Checker")
