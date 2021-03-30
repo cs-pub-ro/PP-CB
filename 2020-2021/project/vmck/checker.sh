@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#unzip archive.zip
+unzip archive.zip
 
 # Bring the checker here overwriting submitted files.
 files=(Dataset.hs Main.hs Makefile tests)
