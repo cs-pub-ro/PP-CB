@@ -12,6 +12,8 @@ module Main where
 
 import System.Environment
 import System.IO
+import Text.Printf
+
 import Tasks
 import Dataset
 
@@ -31,7 +33,7 @@ run_test 1 5 = show $ get_ranking exam_grades
 run_test 1 6 = show $ get_exam_diff_table exam_grades
 
 run_subtest 1 2 1 = show $ get_passed_students_num exam_grades
-run_subtest 1 2 2 = show $ get_passed_students_percentage exam_grades
-run_subtest 1 2 3 = show $ get_exam_avg exam_grades
+run_subtest 1 2 2 = printf "%.2f" $ get_passed_students_percentage exam_grades
+run_subtest 1 2 3 = printf "%.2f" $ get_exam_avg exam_grades
 run_subtest 1 2 4 = show $ get_passed_hw_num hw_grades
 
