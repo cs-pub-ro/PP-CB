@@ -105,3 +105,17 @@ studComp s1 s2 = compare (avg s1) (avg s2)
 highestAverage :: [Student] -> String
 highestAverage = undefined
 
+
+data AExpr = Const Int | Var String | Add AExpr AExpr | Mul AExpr AExpr deriving (Show, Eq)
+data BExpr = Eq AExpr AExpr | Not BExpr | Gt AExpr AExpr deriving (Show, Eq)type Context = [(String, Int)]
+search :: Context -> String -> Int
+search ((k, v):ks) q
+    | k == q = v
+    | otherwise = search ks qevalA :: Context -> AExpr -> Int
+evalA c (Const x) = x
+evalA c (Var x) = search c x
+evalA c (Add e1 e2) = evalA c e1 + evalA c e2
+evalA c (Mul e1 e2) = evalA c e1 * evalA c e2evalB :: Context -> BExpr -> Bool
+evalB c (Eq e1 e2) = evalA c e1 == evalA c e2
+evalB c (Not e) = not $ evalB c e
+evalB c (Gt e1 e2) = evalA c e1 > evalA c e2
