@@ -2,7 +2,7 @@ import os
 from collections import defaultdict
 import subprocess
 
-values_stage1 = {
+values_stage = {
             "s1_t1": 15,
             "s1_t2_1": 5,
             "s1_t2_2": 5,
@@ -11,7 +11,22 @@ values_stage1 = {
             "s1_t3": 15,
             "s1_t4": 15,
             "s1_t5": 20,
-            "s1_t6": 15
+            "s1_t6": 15,
+            "s2_t1_1": 5,
+            "s2_t1_2": 5,
+            "s2_t2_1": 5,
+            "s2_t2_2": 5,
+            "s2_t3": 10,
+            "s2_t4": 10,
+            "s2_t5_1": 5,
+            "s2_t5_2": 5,
+            "s2_t6_1": 5,
+            "s2_t6_2": 5,
+            "s2_t7": 20,
+            "s2_t8_1": 5,
+            "s2_t8_2": 5,
+            "s2_t9_1": 5,
+            "s2_t9_2": 5
         }
 
 stages_values = {
@@ -76,8 +91,8 @@ def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
             stest = subtest.split("_")[1][1:]
             sstest = "." + subtest.split("_")[2] if len(subtest.split("_")) > 2 else "  "
             stest += sstest
-            print(f"Task_{stest}\t\t{values_stage1[subtest] if result else 0}/{values_stage1[subtest]}")
-            obtained_score += values_stage1[subtest] if result else 0
+            print(f"Task_{stest}\t\t{values_stage[subtest] if result else 0}/{values_stage[subtest]}")
+            obtained_score += values_stage[subtest] if result else 0
         print(f"Total: {obtained_score}")
         print("-"*30)
         final_score += (obtained_score * stages_values[test_stage]) / 100
@@ -123,4 +138,4 @@ def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
 
 if __name__ == "__main__":
     results = test()
-    summarize_results(results, values_stage1, stages_values)
+    summarize_results(results, values_stage, stages_values)
