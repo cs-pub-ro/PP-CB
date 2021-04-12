@@ -642,7 +642,7 @@ hw_grades_csv = "\
     \Xavier Isabelle,1,0.48,1,1.5,0.22,0.13,0.25,0.13\n\
     \Nolan Bella,,0,,,,,0,\n\
     \Easton Liliana,1,0.5,1,1.5,0.25,0.19,0,0\n\
-    \Joshua Kennedy,1,0.5,1,1.5,0.2,0.16,0,\n"
+    \Joshua Kennedy,1,0.5,1,1.5,0.2,0.16,0,"
 
 exam_grades_csv = "\
     \Nume,Q1,Q2,Q3,Q4,Q5,Q6,Ex. Scris\n\
@@ -777,7 +777,7 @@ exam_grades_csv = "\
     \Christian Lelani,2,0,0,2,0,0,0.67\n\
     \Xavier Isabelle,2,1,2,2,2,2,0.93\n\
     \Easton Liliana,2,2,2,1,2,1,1.13\n\
-    \Joshua Kennedy,1,2,2,2,1,2,0.67\n"
+    \Joshua Kennedy,1,2,2,2,1,2,0.67"
 
 lecture_grades_csv = "\
     \Email,12.1,4.2,5.1,12.2,5.2,3,5.3,7.1,7.2,4.1,7.3,8.1,2.2,8.2,16.1,8.3,9.1.,9.2.,10.1,2.1,10.2,10.3,11.1,11.3,11.2,13.1,13.2,13.3\n\
@@ -922,7 +922,7 @@ lecture_grades_csv = "\
     \Amaya.Hunter@stud.cs.pub.ro,,,0,,1,,1,,,,,,,,,,,,,,,,,,,,,\n\
     \Chloe.Daniel@stud.cs.pub.ro,,,,,,,,0,,,,,,,,,,,,,,,,,,,,\n\
     \Mia.Mateo@stud.cs.pub.ro,,,,,,,,,,,,,,,,,0,,,,,,,,,,,\n\
-    \,,,,,,,,,,,,,,,,,,,,,,,,1,,,,\n"
+    \,,,,,,,,,,,,,,,,,,,,,,,,1,,,,"
 
 email_map_csv = "\
     \Nume,Email\n\
@@ -1099,4 +1099,4 @@ email_map_csv = "\
     \Xavier Isabelle,Xavier.Isabelle@stud.cs.pub.ro\n\
     \Nolan Bella,Nolan.Bella@stud.cs.pub.ro\n\
     \Easton Liliana,Easton.Liliana@stud.cs.pub.ro\n\
-    \Joshua Kennedy,Joshua.Kennedy@stud.cs.pub.ro\n"
+    \Joshua Kennedy,Joshua.Kennedy@stud.cs.pub.ro"
