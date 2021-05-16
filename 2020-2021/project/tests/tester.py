@@ -1,6 +1,8 @@
 import os
 from collections import defaultdict
+from functools import cmp_to_key
 import subprocess
+import time
 
 values_stage = {
             "s1_t1": 15,
@@ -46,7 +48,9 @@ values_stage = {
             "s3_t2_6": 5,
             "s3_t3_1": 10,
             "s3_t3_2": 10,
-            "s3_t4": 30
+            "s3_t4": 30,
+            "s4_t1": 50,
+            "s4_t2": 50
         }
 
 stages_values = {
@@ -55,6 +59,9 @@ stages_values = {
             "s3": 10,
             "s4": 10,
         }
+
+end = 0
+timeout = 30
 
 def test() -> dict:
     results = defaultdict(bool)
@@ -80,14 +87,45 @@ def test() -> dict:
               cmd = binary_file + " " + str(test_number) + " " + str(subtest_number) + " " + str(test_name.split("_")[2])
             else:
               cmd = binary_file + " " + str(test_number) + " " + str(subtest_number)
-            out = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            out_content = out.stdout.read()
-            out_file = open(output_files_path + "/" + test_name + ".out", "wb")
-            out_file.write(out_content)
-            out_file.close()
-            results[test_name] = ref_content == out_content.decode("utf-8")
+            if f == "s4_t1.ref":
+              start = time.time()
+              out = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)              
+              out_content = out.stdout.read()
+              out_file = open(output_files_path + "/" + test_name + ".out", "wb")
+              out_file.write(out_content)
+              out_file.close()
+              global end
+              end = time.time() - start
+            else:
+              out = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+              out_content = out.stdout.read()
+              out_file = open(output_files_path + "/" + test_name + ".out", "wb")
+              out_file.write(out_content)
+              out_file.close()
+            if f == "s4_t1.ref":
+              results[test_name] = (ref_content == out_content.decode("utf-8")) and end < timeout
+            else:
+              results[test_name] = ref_content == out_content.decode("utf-8")
 
     return results
+
+def comp(x, y):
+	a = x[0].split("_")
+	b = y[0].split("_")
+	if a[0] < b[0]:
+		return -1
+	elif a[0] > b[0]:
+		return 1
+	elif a[1] < b[1]:
+		return -1
+	elif a[1] > b[1]:
+		return 1
+	elif int(a[2]) > int(b[2]):
+		return 1
+	elif int(a[2]) < int(b[2]):
+		return -1
+	else:
+		return 0
 
 def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
     test_results = list(results.items())
@@ -107,12 +145,17 @@ def summarize_results(results: dict, values: dict, test_meaning: dict) -> None:
         print("-"*30)
         obtained_score = 0
         subtests = test_clusters[test_stage]
+        subtests.sort(key = cmp_to_key(comp))
         for subtest, result in subtests:
             stest = subtest.split("_")[1][1:]
             sstest = "." + subtest.split("_")[2] if len(subtest.split("_")) > 2 else "  "
             stest += sstest
-            print(f"Task_{stest}\t\t{values_stage[subtest] if result else 0}/{values_stage[subtest]}")
-            obtained_score += values_stage[subtest] if result else 0
+            if test_stage[-1] == "4" and stest[0] == "1" and end > timeout:
+              print(f"Task_{stest}\t\tTIMEOUT")
+              obtained_score += values_stage[subtest] if result else 0
+            else:
+              print(f"Task_{stest}\t\t{values_stage[subtest] if result else 0}/{values_stage[subtest]}")
+              obtained_score += values_stage[subtest] if result else 0
         print(f"Total: {obtained_score}")
         print("-"*30)
         final_score += (obtained_score * stages_values[test_stage]) / 100
