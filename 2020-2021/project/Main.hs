@@ -35,6 +35,8 @@ run_test 2 3 = write_csv $ vmap (\x -> if x == "" then "0" else x) $ read_csv ex
 run_test 2 4 = write_csv $ rmap get_hw_grade_total ["Nume", "Total teme"] $ read_csv hw_grades_csv
 run_test 2 7 = write_csv $ tjoin "Nume" (read_csv hw_grades_csv) (read_csv exam_grades_csv)
 run_test 3 4 = show $ eval $ similarities_query
+run_test 4 1 = correct_table "Nume" email_map_csv hw_grades_csv
+run_test 4 2 = grades email_map_csv hw_grades_csv exam_grades_csv lecture_grades_csv
 
 run_subtest 1 2 1 = show $ get_passed_students_num exam_grades
 run_subtest 1 2 2 = printf "%.2f" $ get_passed_students_percentage exam_grades
@@ -52,7 +54,6 @@ run_subtest 2 8 1 = write_csv $ cartesian (++) test_schema1 (take 5 $ read_csv h
 run_subtest 2 8 2 = write_csv $ cartesian names_only test_schema2 (take 5 $ read_csv hw_grades_csv) (take 10 $ read_csv exam_grades_csv)
 run_subtest 2 9 1 = write_csv $ projection ["Nume", "Lab (1p)"] $ read_csv hw_grades_csv
 run_subtest 2 9 2 = write_csv $ projection ["Nume","Lab (1p)","T1 (0.5p)","T2 (1p)","T3 (1.5p)"] $ read_csv hw_grades_csv
-
 run_subtest 3 1 1 = show $ eval $ FromCSV exam_grades_csv
 run_subtest 3 1 2 = show $ eval $ ToCSV $ FromCSV $ lecture_grades_csv
 run_subtest 3 1 3 = show $ eval $ AsList "Nume" $ FromCSV hw_grades_csv
