@@ -2,5 +2,9 @@
 
 unzip archive.zip
 unzip -qq -o artifact.zip
-runghc main.hs
+
+ghc --make Tasks.hs
+find . -regex ".*\.o$" | xargs ghc --make -o main
+./main
+
 exit $?
