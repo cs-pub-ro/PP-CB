@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 unzip archive.zip
 unzip -qq -o artifact.zip
