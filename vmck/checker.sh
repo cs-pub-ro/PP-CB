@@ -1,6 +1,7 @@
 #!/bin/bash
 
 unzip archive.zip
+unzip -qq -o artifact.zip
 
 echo "*** ETAPA 3 ***"
 unzip -qq -o artifact3.zip
